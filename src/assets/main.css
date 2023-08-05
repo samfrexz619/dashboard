@@ -1,0 +1,15 @@
+/* @import './base.css'; */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #EBDFD7;
+}
+
+a {
+  text-decoration: none;
+}
