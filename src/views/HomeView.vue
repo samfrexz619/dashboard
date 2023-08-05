@@ -67,6 +67,15 @@ const cardItems = ref<CardItems[]>([
         <TaskCard  />
       </div>
     </div>
+
+    <div class="task">
+      <div class="task__card">
+        <TaskCard  />
+      </div>
+      <div>
+        <TaskCard  />
+      </div>
+    </div>
   </main>
 </template>
 
@@ -95,6 +104,7 @@ const cardItems = ref<CardItems[]>([
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       column-gap: 12px;
+      margin-bottom: 25px;
     }
     .task {
       display: grid;

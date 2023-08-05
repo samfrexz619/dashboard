@@ -1,6 +1,8 @@
 <template>
   <div class="card">
-    <h1>card</h1>
+    <div class="card__container">
+      <h1>card</h1>
+    </div>
   </div>
 </template>
 
@@ -14,6 +16,11 @@
   height: 340px;
   width: 100%;
   border-radius: 14px;
-  margin: 25px 0;
+  // margin: 25px 0;
+  &__container {
+    width: 89%;
+    margin: 0 auto;
+    padding: 15px 0;
+  }
 }
 </style>

@@ -116,6 +116,5 @@ const classes = computed(()=> {
   width: calc(100% - 260px);
   top: 10vh;
   bottom: 0;
-
 }
 </style>
