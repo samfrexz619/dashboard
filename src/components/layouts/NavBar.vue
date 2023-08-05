@@ -3,9 +3,9 @@
     <div class="navbar__side" v-show="toggleNav">
       <SideBar :navItems="navItems" />
     </div>
-    <div :class="['navbar__top', toggleNav=== false && 'w-full']">
+    <div :class="['navbar__top', classes]">
       <TopNav />
-      <div class="main__content">
+      <div :class="['main__content', classes]">
         <RouterView  />
       </div>
     </div>
@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useNavStore } from '@/stores/nav';
 import { storeToRefs } from 'pinia';
 import { uid } from 'uid'
@@ -73,6 +73,10 @@ const navItems = ref<NavItems[]>([
     id: uid(4)
   },
 ])
+
+const classes = computed(()=> {
+  return toggleNav.value === false && 'w-full'
+})
 
 </script>
 
