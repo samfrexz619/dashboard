@@ -4,13 +4,15 @@
       <SideBar :navItems="navItems" />
     </div>
     <div :class="['navbar__top', classes]">
-      <TopNav :toggle="toggleNav"/>
+      <TopNav :toggle="toggleNav" @show-nav="toggleMobileNav" />
       <div :class="['main__content', classes]">
         <RouterView  />
       </div>
     </div>
   </div>
- 
+  <div v-if="close" class="mobile">
+    <MobileSideBar :navItems="navItems" @close-nav="toggleMobileNav" />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -20,6 +22,7 @@ import { storeToRefs } from 'pinia';
 import { uid } from 'uid'
 import SideBar from '../ui/navigation/SideBar.vue';
 import TopNav from '../ui/navigation/TopNav.vue';
+import MobileSideBar from '../ui/navigation/MobileSideBar.vue';
 
 const store = useNavStore()
 
@@ -78,6 +81,12 @@ const classes = computed(()=> {
   return toggleNav.value === false && 'w-full'
 })
 
+const close = ref<boolean>(false)
+
+const toggleMobileNav =()=> {
+  close.value = !close.value
+}
+
 </script>
 
 <style scoped lang="scss">
@@ -90,31 +99,48 @@ const classes = computed(()=> {
     top: 3px;
   }
   &__side {
-    position: fixed;
-    width: 260px;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
+    display: none;
+    @media(min-width: 768px){
+      position: fixed;
+      width: 260px;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
   }
   &__top {
-    width: calc(100% - 260px);
-    position: fixed;
-    left: 260px;
+    width: 100%;
+    @media(min-width: 768px){
+      width: calc(100% - 260px);
+      position: fixed;
+      left: 260px;
+    }
   }
   .w-full {
     width: 100%;
     left: 0;
   }
 }
+
+.mobile {
+  display: block;
+  @media(min-width: 768px){
+    display: none;
+  }
+}
+
 .main__content {
   display: flex;
   flex-direction: column;
   position: fixed;
-  width: calc(100% - 260px);
   top: 10vh;
   bottom: 0;
+  width: 100%;
+  @media(min-width: 768px) {
+    width: calc(100% - 260px);
+  }
 }
 </style>

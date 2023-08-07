@@ -102,9 +102,13 @@ const cardItems = ref<CardItems[]>([
     .overview {
       width: 100%;
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      column-gap: 12px;
       margin-bottom: 25px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      @media(min-width: 768px){
+        column-gap: 15px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
     }
     .task {
       display: grid;

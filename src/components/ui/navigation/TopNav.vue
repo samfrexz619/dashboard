@@ -5,7 +5,7 @@
     </button>
     <div class="header__container">
       <div class="nav-btn">
-        <button v-show="toggle === false" @click="handleClose" class="">
+        <button @click="showMobile" class="">
           <MenuIcon  />
         </button>
         <h1>{{ route.name }}</h1>
@@ -38,6 +38,12 @@ import MenuIcon from '@/components/icons/MenuIcon.vue';
 defineProps<{
   toggle: boolean;
 }>()
+
+const emit = defineEmits(['showNav'])
+
+const showMobile =()=> {
+  emit('showNav')
+}
 
 const route = useRoute()
 
@@ -79,7 +85,12 @@ const searchText = ref<string>('')
       display: flex;
       align-items: center;
       button {
+        display: inline;
+        @media(min-width: 768px){
+          display: none;
+        }
         outline: none;
+        // display: none;
         border: none;
         background: inherit;
         cursor: pointer;
@@ -91,28 +102,36 @@ const searchText = ref<string>('')
         }
       }
       h1 {
-        font-size: 30px;
+        @media(min-width: 768px) {
+          font-size: 30px;
+        }
         font-weight: 400;
+        font-size: 22px;
       }
     }
   }
   &__avatar {
-    width: 160px;
+    @media(min-width: 768px) {
+      width: 160px;
+    }
   }
   .close {
-    position: absolute;
-    left: -15px;
-    top: 15px;
-    cursor: pointer;
-    border: none;
-    outline: none;
-    height: 30px;
-    width: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #fff;
-    border-radius: 50%;
+    display: none;
+    @media(min-width: 768px) {
+      position: absolute;
+      left: -15px;
+      top: 15px;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      height: 30px;
+      width: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      border-radius: 50%;
+    }
   }
 }
 </style>

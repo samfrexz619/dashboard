@@ -28,7 +28,6 @@ import LogoIcon from '@/components/icons/LogoIcon.vue';
 import Button from '@/components/ui/BaseBtn.vue'
 import NavItem from './NavItem.vue';
 import { type NavItems } from '@/components/layouts/NavBar.vue';
-import type ChevIcon from '@/components/icons/ChevIcon.vue';
 
 
 defineProps<{
