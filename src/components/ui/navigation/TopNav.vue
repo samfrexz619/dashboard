@@ -1,12 +1,25 @@
 <template>
   <div class="header">
-    <button @click="handleClose" class="close">
+    <button v-show="toggle === true" @click="handleClose" class="close">
       <ChevIcon  />
     </button>
     <div class="header__container">
-      <h1 class="header__title">{{ route.name }}</h1>
-      <div class="header__avatar">
-        <Avatar  />
+      <div class="nav-btn">
+        <button v-show="toggle === false" @click="handleClose" class="">
+          <MenuIcon  />
+        </button>
+        <h1>{{ route.name }}</h1>
+      </div>
+      <div class="search-avatar">
+        <div class="input">
+          <SearchInput
+            v-model="searchText"
+            placeholder="Search for anything..."
+          />
+        </div>
+        <div class="header__avatar">
+          <Avatar  />
+        </div>
       </div>
     </div>
   </div>
@@ -14,17 +27,29 @@
 
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
+import { ref } from 'vue';
 import { useNavStore } from '@/stores/nav';
 import ChevIcon from '@/components/icons/ChevIcon.vue';
 import Avatar from '../BaseAvatar.vue';
+import SearchInput from '../SearchInput.vue';
+import MenuIcon from '@/components/icons/MenuIcon.vue';
+
+
+defineProps<{
+  toggle: boolean;
+}>()
 
 const route = useRoute()
 
 const store = useNavStore()
 
+// const {} 
+
 const handleClose =()=> {
   store.closeNav()
 }
+
+const searchText = ref<string>('')
 
 </script>
 
@@ -43,6 +68,33 @@ const handleClose =()=> {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    .search-avatar {
+      display: flex;
+      .input {
+        width: 350px;
+        margin-right: 20px;
+      }
+    }
+    .nav-btn {
+      display: flex;
+      align-items: center;
+      button {
+        outline: none;
+        border: none;
+        background: inherit;
+        cursor: pointer;
+        padding: 10px;
+        margin-right: 10px;
+        &:hover {
+          background: #fff;
+          border-radius: 8px;
+        }
+      }
+      h1 {
+        font-size: 30px;
+        font-weight: 400;
+      }
+    }
   }
   &__avatar {
     width: 160px;

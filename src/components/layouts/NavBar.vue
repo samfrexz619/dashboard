@@ -4,7 +4,7 @@
       <SideBar :navItems="navItems" />
     </div>
     <div :class="['navbar__top', classes]">
-      <TopNav />
+      <TopNav :toggle="toggleNav"/>
       <div :class="['main__content', classes]">
         <RouterView  />
       </div>
