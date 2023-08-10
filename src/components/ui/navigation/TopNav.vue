@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <button v-show="toggle === true" @click="handleClose" class="close">
+    <button @click="handleClose" :class="['close', !toggle && 'show']">
       <ChevIcon  />
     </button>
     <div class="header__container">
@@ -132,6 +132,10 @@ const searchText = ref<string>('')
       background: #fff;
       border-radius: 50%;
     }
+  }
+  .show {
+    position: absolute;
+    left: 15px;
   }
 }
 </style>
